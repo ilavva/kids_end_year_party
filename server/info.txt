@@ -1,0 +1,13 @@
+--- create file: database.js
+npm init -y
+--- add line into package.json :  "type": "module",
+npm i mysql2
+
+-- to run code: node database.js
+npm i dotenv
+
+npm install "express@>=5.0.0-beta.1" --save
+
+npm i -D nodemon
+npm run dev
+
