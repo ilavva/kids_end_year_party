@@ -10,9 +10,20 @@ const pool = mysql.createPool({
 }).promise()
 
 export async function getPartyList() {
-    const [rows] = await pool.query("SELECT * FROM party_list WHERE isActive=1")
+    const [rows] = await pool.query("SELECT * FROM party_list WHERE isActive=true")
     return rows;
 }
+
+export async function getPartyListFree() {
+    const [rows] = await pool.query("SELECT * FROM `party_list` WHERE owner_name is NULL and isActive=true")
+    return rows;
+}
+
+export async function getPartyListOwnered() {
+    const [rows] = await pool.query("SELECT * FROM `party_list` WHERE owner_name is not NULL and isActive=true")
+    return rows;
+}
+
 export async function getPartyListItem(id) {
 
     const [rows] = await pool.query(`

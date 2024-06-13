@@ -1,10 +1,20 @@
 import express from 'express'
-import { getPartyList, getPartyListItem, addPartyListItem } from './database.js'
+import { getPartyList, getPartyListItem, addPartyListItem, getPartyListFree, getPartyListOwnered } from './database.js'
 const app = express()
 app.use(express.json())
 
 app.get("/list", async (req, res) => {
     const list = await getPartyList()
+    res.send(list)
+})
+
+app.get("/listfree", async (req, res) => {
+    const list = await getPartyListFree()
+    res.send(list)
+})
+
+app.get("/listtaken", async (req, res) => {
+    const list = await getPartyListOwnered()
     res.send(list)
 })
 
