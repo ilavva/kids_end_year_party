@@ -38,10 +38,15 @@
         <h2>מי יכול להביא?</h2>
         <div id="listToBring" data-src="listfree" class="load_data list-items" data-template="freeItems"></div>
         
-        <div id="takeItemToBring">
-            <h2>אני מעוניין להביא</h2>
-            <div id="itemToBring">
-
+        <div id="takeItemToBring" class="overlay">
+            <div class="popup">
+                <a class="close" href="#">&times;</a>
+                <h2>אני מעוניין להביא</h2>
+                <p>
+                <input type="text" id="additional_item_name" class="hidden" placeholder="מה אני מביא/ה">
+            </p><p><input type="text" id="form_item_owner_name" placeholder="שם מלא של הילד/ה">
+            </p><p><input type="text" id="form_item_id" hidden placeholder="שם מלא של הילד/ה">
+            </p><p> <button onclick="SaveToList();">שמור</button></p>
             </div>
         </div>
 

@@ -23,7 +23,13 @@ export async function getPartyListOwnered() {
     const [rows] = await pool.query("SELECT * FROM `party_list` WHERE owner_name is not NULL and isActive=true")
     return rows;
 }
-
+export async function addPartyListOwner(id, owner_name) {
+    const [result] = await pool.query(`
+        UPDATE party_list SET owner_name=?   
+        WHERE id=?
+           `, [owner_name, id]);
+    return getPartyListItem(id);
+}
 export async function getPartyListItem(id) {
 
     const [rows] = await pool.query(`

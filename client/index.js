@@ -1,3 +1,4 @@
+const server_url = `http://localhost:8080`
 function load_json(list_url, callback) {
     //console.log(list_url);
     fetch(list_url)
@@ -27,8 +28,12 @@ function create_html(json, template_name) {
 
         if (template_name === "takenItems") {
             html += ` <span class="name">${owner_name}</span>`;
+            html += `  <span class="item">${item_name}</span>`;
         }
-        html += `  <span class="item">${item_name}</span>`;
+        else {
+            html += `  ${item_name}`;
+        }
+
 
         html += `</div>`;
     }
@@ -41,11 +46,67 @@ function create_html(json, template_name) {
 }
 
 function takeCard() {
-    const id = this.getAttribute('item-id');
+    const item_id = this.getAttribute('item-id');
     const item_name = this.innerHTML;
-    console.log(id, item_name);
-    const cardToTake = document.querySelector(".takeItemToBring");
-    cardToTake.style.display = "block";
+    document.querySelector('#form_item_id').value = item_id;
+
+    if (item_id !== '0') {
+        const qw = document.querySelector('#additional_item_name');
+        qw.value = item_name;
+        qw.disabled = true;
+    } else {
+        qw.disabled = false;
+    }
+
+    window.location.href = '#takeItemToBring';
+}
+
+function SaveToList() {
+    const item_id = document.querySelector('#form_item_id').value;
+    const item_owner_name = document.querySelector('#form_item_owner_name').value
+    if (item_id === '0') {
+        const additional_item_name = document.querySelector('#additional_item_name').value;
+        let data = { item_name: additional_item_name, owner_name: item_owner_name };
+        const url = `${server_url}/list`;
+        fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors',//'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        }).then((response) => response.json())
+            .then((json) => {
+                loadData();
+                window.location.href = '#listToBring';
+                return;
+            });;
+    } else {
+        const url = `${server_url}/list/${item_id}`;
+        let data = { owner_name: item_owner_name };
+        fetch(url, {
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors',//'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        }).then((response) => response.json())
+            .then((json) => {
+                loadData();
+                window.location.href = '#listToBring';
+                return;
+            });;
+    }
+
 }
 
 function loadData() {
@@ -55,7 +116,7 @@ function loadData() {
             const elemLoadData = listLoadData[index];
 
             const data_src_filename = elemLoadData.getAttribute("data-src");
-            const url = `http://localhost:8080/${data_src_filename}`;
+            const url = `${server_url}/${data_src_filename}`;
             const data_template = elemLoadData.getAttribute("data-template");
             load_json(url, (json) => {
                 elemLoadData.innerHTML = create_html(json, data_template);

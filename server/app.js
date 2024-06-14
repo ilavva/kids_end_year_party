@@ -1,5 +1,13 @@
 import express from 'express'
-import { getPartyList, getPartyListItem, addPartyListItem, getPartyListFree, getPartyListOwnered } from './database.js'
+import {
+    getPartyList,
+    getPartyListItem,
+    addPartyListItem,
+    getPartyListFree,
+    getPartyListOwnered,
+    addPartyListOwner
+} from './database.js'
+
 const app = express()
 app.use(express.json())
 
@@ -35,6 +43,13 @@ app.get("/list/:id", async (req, res) => {
 app.post("/list", async (req, res) => {
     const { item_name, owner_name } = req.body;
     const item = await addPartyListItem(item_name, owner_name)
+    res.status(201).send(item)
+})
+
+app.put("/list/:id", async (req, res) => {
+    const id = req.params.id;
+    const { owner_name } = req.body;
+    const item = await addPartyListOwner(id, owner_name);
     res.status(201).send(item)
 })
 
