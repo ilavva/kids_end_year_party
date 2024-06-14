@@ -73,16 +73,16 @@ export async function deletePartyListItem(id) {
     return getPartyListItem(id);
 }
 
-const partyList = await getPartyList()
-console.log(partyList)
+// const partyList = await getPartyList()
+// console.log(partyList)
 
-const partyItem = await getPartyListItem(38)
-console.log(partyItem)
+// const partyItem = await getPartyListItem(38)
+// console.log(partyItem)
 
-// const res1 = addPartyListItem("כוסות", "אירנה")
-// console.log(res1)
-const res2 = await updatePartyListItemOwner(38, "רועי")
-console.log(res2)
+// // const res1 = addPartyListItem("כוסות", "אירנה")
+// // console.log(res1)
+// const res2 = await updatePartyListItemOwner(38, "רועי")
+// console.log(res2)
 
-const res3 = await deletePartyListItem(38, "רועי")
-console.log(res3)
+// const res3 = await deletePartyListItem(38, "רועי")
+// console.log(res3)

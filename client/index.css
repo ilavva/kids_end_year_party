@@ -17,6 +17,13 @@ main {
   margin: auto;
   text-align: center;
 }
+section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+h2 {
+  padding: 1rem;
+}
 .message {
   text-align: start;
   max-width: 400px;
@@ -31,4 +38,40 @@ main {
 }
 .message .bolder {
   font-weight: bolder;
+}
+
+.list-items {
+  display: flex;
+  text-wrap: nowrap;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.list-items .cardFree {
+  border: 1px grey solid;
+  border-radius: 10px;
+  padding: 0.4rem;
+  max-width: max-content;
+}
+.list-items .cardFree.colored {
+  background-color: #b3f1c6;
+}
+.list-items .cardFree:hover {
+  box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 22px 0px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.list .card {
+  text-align: start;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px;
+  border: 1px solid #ddd;
+}
+.list .card span {
+  padding: 0.5rem;
+}
+.item {
+  text-align: start;
 }

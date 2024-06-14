@@ -3,6 +3,14 @@ import { getPartyList, getPartyListItem, addPartyListItem, getPartyListFree, get
 const app = express()
 app.use(express.json())
 
+// Allow requests from http://127.0.0.1:5500
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
 app.get("/list", async (req, res) => {
     const list = await getPartyList()
     res.send(list)
