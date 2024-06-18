@@ -11,3 +11,4 @@ npm install "express@>=5.0.0-beta.1" --save
 npm i -D nodemon
 npm run dev
 
+npm i pg

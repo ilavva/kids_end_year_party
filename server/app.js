@@ -7,13 +7,14 @@ import {
     getPartyListOwnered,
     addPartyListOwner
 } from './database.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 app.use(express.json())
 
-// Allow requests from http://127.0.0.1:5500
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
+    res.header('Access-Control-Allow-Origin', process.env.CLIENT_APP);
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
@@ -58,6 +59,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something broke!')
 })
 
-app.listen(8080, () => {
-    console.log('Server is running on port 8080')
+app.listen(process.env.SERVER_PORT, process.env.HOST, () => {
+    console.log(`Server running at http://${process.env.HOST}:${process.env.SERVER_PORT}/`);
 })

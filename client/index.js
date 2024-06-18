@@ -1,5 +1,5 @@
-//const server_url = `http://localhost:8080`
-const server_url = 'https://kidspartydata.netlify.app'
+const server_url = `http://localhost:3000`
+//const server_url = 'https://kidspartydata.netlify.app'
 function load_json(list_url, callback) {
     //console.log(list_url);
     fetch(list_url)
