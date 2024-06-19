@@ -1,4 +1,4 @@
-const server_url = `http://localhost:3000`
+const server_url = "";
 //const server_url = 'https://kidspartydata.netlify.app'
 function load_json(list_url, callback) {
     //console.log(list_url);
@@ -50,9 +50,9 @@ function takeCard() {
     const item_id = this.getAttribute('item-id');
     const item_name = this.innerHTML;
     document.querySelector('#form_item_id').value = item_id;
-
+    const qw = document.querySelector('#additional_item_name');
     if (item_id !== '0') {
-        const qw = document.querySelector('#additional_item_name');
+        
         qw.value = item_name;
         qw.disabled = true;
     } else {
