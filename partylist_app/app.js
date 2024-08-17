@@ -58,7 +58,7 @@ app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send('Something broke!')
 })
-
-app.listen(process.env.SERVER_PORT, process.env.HOST, () => {
+const port = process.env.SERVER_PORT || 3000;
+app.listen(port, process.env.HOST, () => {
     console.log(`Server running at http://${process.env.HOST}:${process.env.SERVER_PORT}/`);
 })
