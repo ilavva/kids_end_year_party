@@ -1,7 +1,7 @@
 const server_url = "";
 //const server_url = 'https://kidspartydata.netlify.app'
 function load_json(list_url, callback) {
-    //console.log(list_url);
+    console.log(list_url);
     fetch(list_url)
         .then((response) => response.json())
         .then((json) => {
@@ -14,7 +14,7 @@ function create_html(json, template_name) {
 
     let html = "";
 
-    //console.log(json);
+    console.log(json);
 
 
     for (let [i, v] of Object.entries(json)) {
@@ -52,7 +52,7 @@ function takeCard() {
     document.querySelector('#form_item_id').value = item_id;
     const qw = document.querySelector('#additional_item_name');
     if (item_id !== '0') {
-        
+
         qw.value = item_name;
         qw.disabled = true;
     } else {

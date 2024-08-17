@@ -6,7 +6,7 @@ import {
     getPartyListFree,
     getPartyListOwnered,
     addPartyListOwner
-} from './database.js'
+} from './data/database_pg.js'
 import dotenv from 'dotenv'
 dotenv.config();
 

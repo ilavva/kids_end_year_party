@@ -3,10 +3,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
+    host: process.env.DB_POSTGRE_HOST,
+    user: process.env.DB_POSTGRE_USER,
+    password: process.env.DB_POSTGRE_PASSWORD,
+    database: process.env.DB_POSTGRE_DATABASE,
 }).promise()
 
 export async function getPartyList() {
