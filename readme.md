@@ -1,4 +1,5 @@
 --- create file: database.js
+cd partylist_app
 npm init -y
 --- add line into package.json : "type": "module",
 npm i mysql2
