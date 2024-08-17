@@ -22,7 +22,7 @@ export async function queryDatabase(queryText, params) {
     const client = await pool.connect();
     try {
         const result = await client.query(queryText, params);
-        console.log(result);
+        //  console.log(result);
         return result.rows;
     } catch (error) {
         console.error('Error executing query', error.stack);
